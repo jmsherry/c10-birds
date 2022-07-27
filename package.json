@@ -1,0 +1,28 @@
+{
+  "name": "c10-fullstack-vite",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install:both": "concurrently --kill-others-on-fail \"install:client\" \"install:server\"",
+    "install:client": "npm i --prefix ./client",
+    "install:server": "npm i --prefix ./server",
+    "start:client:dev": "npm run dev --prefix ./client",
+    "build:client": "npm run build --prefix ./client ",
+    "start:client:prod": "npm run build:client && npm run preview --prefix ./client",
+    "start:server:dev": "npm run start:dev --prefix ./server",
+    "start:server:prod": "npm start --prefix ./server",
+    "start:both:dev": "concurrently \"npm run start:server:dev\" \"npm run start:client:dev\"",
+    "start:both:prod": "concurrently \"npm run start:server:prod\" \"npm run start:client:prod\"",
+    "heroku-postbuild": "npm run install:both && npm run build:client",
+    "start": "npm run start:server:prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.3.0",
+    "rimraf": "^3.0.2"
+  }
+}
