@@ -6,6 +6,10 @@ import compression from "compression";
 // import morgan from "morgan";
 // import logger from './logger';
 
+import * as url from 'url';
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
 const { NODE_ENV = "development" } = process.env;
 
 export default function middlewareSetup(app) {
