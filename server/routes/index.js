@@ -1,7 +1,7 @@
 import path from 'path';
 import birdsRouter from "./birds.router.js"
 
-const {} = process.env;
+const {NODE_ENV='development'} = process.env;
 
 export default function setupRoutes(app) {
   const API_ENDPOINT = "/api";
