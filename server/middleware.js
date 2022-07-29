@@ -9,6 +9,7 @@ import compression from "compression";
 import * as url from 'url';
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+global.__basedir = __dirname;
 
 const { NODE_ENV = "development" } = process.env;
 
