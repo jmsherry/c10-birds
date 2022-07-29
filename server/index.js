@@ -1,9 +1,11 @@
-import * as url from 'url';
+import * as url from "url";
+import "dotenv/config";
+
 import app from "./server.js";
 
 const { PORT = 6000 } = process.env;
 
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 global.__basedir = __dirname; // Make a reference to your project's base directory
 // const yourModule = require(__basedir + '/path/to/module.js');
 // import yourModule from `${__basedir}/path/to/module.js`
@@ -14,7 +16,7 @@ const server = app.listen(PORT, () => {
 });
 
 process.on("uncaughtException", (err) => {
-  console.log(err)
+  console.log(err);
   // Honeybadger.notify(error); // log the error in a permanent storage
   // attempt a gracefully shutdown
   server.close(() => {
