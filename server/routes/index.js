@@ -1,5 +1,6 @@
 import path from "path";
 import birdsRouter from "./birds.router.js";
+import spotsRouter from "./spots.router.js";
 
 const { NODE_ENV = "development" } = process.env;
 
@@ -9,6 +10,7 @@ export default function setupRoutes(app) {
 
   // Add routers (/api/v1/birds + url frag in router)
   app.use(`${API_ENDPOINT}/${API_VERSION}/birds`, birdsRouter);
+  app.use(`${API_ENDPOINT}/${API_VERSION}/spots`, spotsRouter);
 
   // Handle non-API gets
   app.get("*", (req, res) => {

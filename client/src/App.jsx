@@ -7,8 +7,14 @@ import {
   Routes,
 } from "react-router-dom";
 
+// Contexts
+import { BirdsProvider } from "../contexts/birds.context";
+import { SpotsProvider } from "../contexts/spots.context";
+
+// Layouts
 import PageLayout from "./components/Layout";
 
+// Pages
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
@@ -28,29 +34,31 @@ import NotFound from "./pages/NotFound";
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route>
-          <Route element={<PageLayout />}>
-            <Route index element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/birds">
-              <Route index element={<BirdList />} />
-              <Route path="add" element={<AddBird />} />
-              <Route path="update/:id" element={<UpdateBird />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-            <Route path="/spots">
-              <Route index element={<SpotsList />} />
-              <Route path="add" element={<AddSpot />} />
-              <Route path="update/:id" element={<UpdateSpot />} />
+      <BirdsProvider>
+        <Routes>
+          <Route>
+            <Route element={<PageLayout />}>
+              <Route index element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/birds">
+                <Route index element={<BirdList />} />
+                <Route path="add" element={<AddBird />} />
+                <Route path="update/:id" element={<UpdateBird />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+              <Route path="/spots">
+                <Route index element={<SpotsList />} />
+                <Route path="add" element={<AddSpot />} />
+                <Route path="update/:id" element={<UpdateSpot />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
               <Route path="*" element={<NotFound />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </BirdsProvider>
     </Router>
   );
 }
