@@ -1,35 +1,57 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+// import "./App.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  // Redirect,
+  Routes,
+} from "react-router-dom";
+
+import PageLayout from "./components/Layout";
+
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import Login from "./pages/Login";
+
+// Birds
+import BirdList from "./pages/Birds/BirdList";
+import AddBird from "./pages/Birds/AddBird";
+import UpdateBird from "./pages/Birds/UpdateBird";
+
+// Spots
+import SpotsList from "./pages/Spots/SpotsList";
+import AddSpot from "./pages/Spots/AddSpot";
+import UpdateSpot from "./pages/Spots/UpdateSpot";
+
+import NotFound from "./pages/NotFound";
 
 function App() {
-  const [birds, setBirds] = useState([]);
-
-  const getBirds = async () => {
-    try {
-      const response = await fetch("/api/v1/birds");
-      console.log("🚀 ~ file: App.jsx ~ line 10 ~ getBirds ~ response", response)
-      
-      if (!response.ok) throw response;
-      const data = await response.json();
-      console.log("🚀 ~ file: App.jsx ~ line 14 ~ getBirds ~ data", data)
-      
-      setBirds(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    getBirds();
-  }, []);
-
   return (
-    <div className="App">
-      <h1>Birds</h1>
-      <ul>
-        {birds.map(({name, _id}) => (<li key={_id}>{name}</li>))}
-      </ul>
-    </div>
+    <Router>
+      <Routes>
+        <Route>
+          <Route element={<PageLayout />}>
+            <Route index element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/birds">
+              <Route index element={<BirdList />} />
+              <Route path="add" element={<AddBird />} />
+              <Route path="update/:id" element={<UpdateBird />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+            <Route path="/spots">
+              <Route index element={<SpotsList />} />
+              <Route path="add" element={<AddSpot />} />
+              <Route path="update/:id" element={<UpdateSpot />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 

@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 const localDBName = "birds";
 const { MONGODB_URI = `mongodb://localhost/${localDBName}` } = process.env;
 
-// logger.info(`MONGODB_URI ${MONGODB_URI}`);
+console.log(`MONGODB_URI ${MONGODB_URI}`);
 
 const promise = mongoose
   .connect(MONGODB_URI, {
