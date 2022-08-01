@@ -1,9 +1,39 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { BirdsContext } from "../../../contexts/birds.context";
+import { AuthContext } from "../../../contexts/auth.context";
+import { SpotsContext } from "../../../contexts/spots.context";
 
 function AddSpot() {
+  const { birds } = useContext(BirdsContext);
+  const { user } = useContext(AuthContext);
+  const { addSpot } = useContext(SpotsContext);
+  /*
+    bird id
+    user id
+  */
+
+  const onChange = ($e) => {
+    const val = $e.target.value;
+    console.log(val);
+    addSpot({
+      bird: val,
+      user: user.sub,
+    });
+  };
+
   return (
-    <div>AddSpot</div>
-  )
+    <>
+      <h1>AddSpot</h1>
+      <select onChange={onChange} required>
+        <option value="">Select a bird</option>
+        {birds.map(({ _id, name }) => (
+          <option key={_id} value={_id}>
+            {name}
+          </option>
+        ))}
+      </select>
+    </>
+  );
 }
 
-export default AddSpot
+export default AddSpot;

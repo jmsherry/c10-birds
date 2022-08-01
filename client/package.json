@@ -14,8 +14,11 @@
     "@emotion/styled": "^11.10.0",
     "@hookform/resolvers": "^2.9.7",
     "@mui/material": "^5.9.2",
+    "express-jwt": "^7.7.5",
+    "jwks-rsa": "^2.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-error-boundary": "^3.1.4",
     "react-hook-form": "^7.34.0",
     "react-router-dom": "^6.3.0",
     "yup": "^0.32.11"

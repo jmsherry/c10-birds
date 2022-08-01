@@ -6,8 +6,15 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 // import IconButton from "@mui/material/IconButton";
 // import MenuIcon from "@mui/icons-material/Menu";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Header() {
+  const {
+    // user,
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+  } = useAuth0();
   return (
     <Box sx={{ flexGrow: 1, mb: 4 }}>
       <AppBar position="static">
@@ -19,23 +26,30 @@ function Header() {
           >
             BirdsApp
           </Button>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              justifyContent: "flex-end",
-            }}
-          >
+          <NavLink to="/birds">Birds</NavLink>
+          <NavLink to="/spots">Spots</NavLink>
+          <NavLink to="/spots/add">Spot something</NavLink>
+          {!isAuthenticated ? (
             <Button
-              sx={{ my: 2, display: "block" }}
-              component={NavLink}
-              to="/birds/add"
-              variant="contained"
-              color="secondary"
+              edge="start"
+    
+              color="inherit"
+              aria-label="log in"
+              onClick={() => loginWithRedirect()}
             >
-              Add Bird
+              Log In
             </Button>
-          </Box>
+          ) : (
+            <Button
+              edge="start"
+
+              color="inherit"
+              aria-label="log out"
+              onClick={() => logout({ returnTo: window.location.origin })}
+            >
+              Log Out
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

@@ -1,5 +1,6 @@
 import React from "react";
-import {ErrorBoundary} from 'react-error-boundary'
+// import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary } from "react-error-boundary";
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
@@ -11,7 +12,7 @@ function ErrorFallback({ error, resetErrorBoundary }) {
   );
 }
 
-function ErrorBoundary({ children }) {
+function UI({ children }) {
   return (
     <ErrorBoundary
       FallbackComponent={ErrorFallback}
@@ -23,4 +24,4 @@ function ErrorBoundary({ children }) {
   );
 }
 
-export default ErrorBoundary;
+export default UI;

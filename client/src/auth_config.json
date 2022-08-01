@@ -1,0 +1,5 @@
+{
+  "domain": "the-jump.eu.auth0.com",
+  "clientId": "fceujvs6qCYmO896zOgwebK6PDHwfquS",
+  "audience": "http://localhost:5173/api/v1/spots"
+}

@@ -28,6 +28,7 @@ export const AuthProvider = (props) => {
     // loginWithPopup,
     logout,
   } = useAuth0();
+
   const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
@@ -48,6 +49,7 @@ export const AuthProvider = (props) => {
         }
       }
     };
+
     if (user) {
       console.log("user", user);
       getToken();
@@ -57,7 +59,7 @@ export const AuthProvider = (props) => {
   return (
     <AuthContext.Provider
       value={{
-        accessToken,
+        token: accessToken,
         user,
         error,
         isAuthenticated,
