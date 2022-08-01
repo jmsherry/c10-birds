@@ -13,7 +13,7 @@ export function getSpots(req, res) {
     query._id = req.params.id;
   }
   Spot.find(query)
-    // .populate("items")
+    .populate("bird")
     .exec((err, spots) => {
       if (err) return errorHandler(res, err);
       if (req.params.id && spots.length === 0)
@@ -31,7 +31,7 @@ export function getOwnSpots(req, res) {
     query._id = req.params.id;
   }
   Spot.find(query)
-    // .populate("items")
+    .populate("bird")
     .exec((err, spots) => {
       if (err) return errorHandler(res, err);
       if (req.params.id && spots.length === 0)

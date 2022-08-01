@@ -4,7 +4,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
 function Profile() {
-  const { accessToken, user, error, isAuthenticated, isLoading, logout } =
+  const { token, user, error, isAuthenticated, isLoading, logout } =
     useContext(AuthContext);
 
   // useEffect(() => {
@@ -21,6 +21,7 @@ function Profile() {
       )}
       {!isLoading && error && <p>{error}</p>}
       {!isLoading && !error && <p>{JSON.stringify(user, null, 2)}</p>}
+      {!isLoading && !error && <p>Access Token: {token}</p>}
     </>
   );
 }

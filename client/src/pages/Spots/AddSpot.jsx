@@ -5,7 +5,7 @@ import { SpotsContext } from "../../../contexts/spots.context";
 
 function AddSpot() {
   const { birds } = useContext(BirdsContext);
-  const { user } = useContext(AuthContext);
+  const { user, token } = useContext(AuthContext);
   const { addSpot } = useContext(SpotsContext);
   /*
     bird id
@@ -14,6 +14,7 @@ function AddSpot() {
 
   const onChange = ($e) => {
     const val = $e.target.value;
+    if(val === '') return;
     console.log(val);
     addSpot({
       bird: val,
@@ -24,6 +25,7 @@ function AddSpot() {
   return (
     <>
       <h1>AddSpot</h1>
+      <p>{token}</p>
       <select onChange={onChange} required>
         <option value="">Select a bird</option>
         {birds.map(({ _id, name }) => (

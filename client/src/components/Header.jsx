@@ -26,9 +26,15 @@ function Header() {
           >
             BirdsApp
           </Button>
+          {" "}
           <NavLink to="/birds">Birds</NavLink>
+          {" "}
           <NavLink to="/spots">Spots</NavLink>
+          {" "}
           <NavLink to="/spots/add">Spot something</NavLink>
+          {" "}
+          <NavLink to="/profile">Profile</NavLink>
+          {" "}
           {!isAuthenticated ? (
             <Button
               edge="start"

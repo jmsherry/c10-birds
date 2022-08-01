@@ -2,6 +2,12 @@ import React, { createContext, useState, useCallback, useContext } from "react";
 // import { useToasts } from "react-toast-notifications";
 // import cloneDeep from 'lodash.cloneDeep' <-- use if your objects get complex
 
+let headers = {
+  "Content-Type": "application/json",
+  "X-Requested-With": "XMLHttpRequest",
+  // 'Content-Type': 'application/x-www-form-urlencoded',
+};
+
 import { AuthContext } from "./auth.context";
 
 export const SpotsContext = createContext({
@@ -60,14 +66,12 @@ export const SpotsProvider = (props) => {
     async (formData) => {
       console.log("about to add", formData);
       try {
-        debugger;
+        // debugger;
         const response = await fetch(SPOTS_ENDPOINT, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-            "Authorisation": `Bearer ${token}`
-          },
+          headers: token
+          ? { ...headers, Authorization: `Bearer ${token}` }
+          : headers,
           body: JSON.stringify(formData),
         });
         if (response.status !== 201) {
@@ -88,7 +92,7 @@ export const SpotsProvider = (props) => {
         // });
       }
     },
-    [spots]
+    [spots, token, headers]
   );
 
   const updateSpot = useCallback(
