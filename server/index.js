@@ -3,7 +3,7 @@ import "dotenv/config";
 
 import app from "./server.js";
 
-const { PORT = 6000 } = process.env;
+const { PORT = 4000 } = process.env;
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 global.__basedir = __dirname; // Make a reference to your project's base directory
